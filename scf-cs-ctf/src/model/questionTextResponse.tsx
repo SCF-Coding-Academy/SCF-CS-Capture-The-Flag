@@ -7,7 +7,6 @@
 import Question from "./question";
 
 export default class QuestionTextResponse extends Question{
-    public givenResponse: string;
 
     private isCaseSensitive: boolean;
     private pointValue: number;
@@ -17,17 +16,16 @@ export default class QuestionTextResponse extends Question{
         super(question, timeLimit);
         this.pointValue = pointValue;
         this.correctResponse = correctResponse;
-        this.givenResponse = "";
         this.isCaseSensitive = isCaseSensitive;
     }
 
     public scoreAnswer():void{
         if(this.isCaseSensitive){
-            if(this.givenResponse == this.correctResponse)
+            if(this.responseGiven == this.correctResponse)
                 this.setPointsScored(this.pointValue);
         }
         else{
-            if(this.givenResponse.toLowerCase() == this.givenResponse.toLowerCase())
+            if(this.responseGiven.toLowerCase() == this.responseGiven.toLowerCase())
             this.setPointsScored(this.pointValue);
         }
     }

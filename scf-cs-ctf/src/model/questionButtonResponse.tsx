@@ -24,13 +24,13 @@ export default class QuestionButtonResponse extends Question{
         this.points[3] = points4;
     }
 
-    public getPointsForAnswer(answerNumber: number):number{
+    public scoreAnswer(answerNumber: number):void{
         try{
-            return this.points[answerNumber];
+            this.pointsScored += this.points[answerNumber];
+            this.responseGiven = answerNumber.toString();
         }
         catch (e){
             console.log(e);
-            return 0;
         }
     }
 }
