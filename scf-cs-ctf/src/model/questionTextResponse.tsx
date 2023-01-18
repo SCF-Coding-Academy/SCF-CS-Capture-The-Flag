@@ -21,16 +21,14 @@ export default class QuestionTextResponse extends Question{
         this.isCaseSensitive = isCaseSensitive;
     }
 
-    public scoreAnswer():number{
+    public scoreAnswer():void{
         if(this.isCaseSensitive){
             if(this.givenResponse == this.correctResponse)
-                return this.pointValue;
-            else return 0;
+                this.setPointsScored(this.pointValue);
         }
         else{
             if(this.givenResponse.toLowerCase() == this.givenResponse.toLowerCase())
-                return this.pointValue;
-            else return 0;
+            this.setPointsScored(this.pointValue);
         }
     }
 }
