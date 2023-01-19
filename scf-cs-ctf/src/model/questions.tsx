@@ -26,7 +26,7 @@ export default class Questions{
         this.totalScoreRecieved = 0;
 
         for (const key in questionsButtonResponse){
-            if(key != "default"){
+            if(key != "default" && key != "length"){
                 this.theQuestions.push(new QuestionButtonResponse(
                     questionsButtonResponse[key].question,
                     questionsButtonResponse[key].answer1,
@@ -45,7 +45,7 @@ export default class Questions{
 
         let questionsTextResponse = JSON.parse(qTs);
         for (const key in questionsTextResponse){
-            if(key != "default"){
+            if(key != "default" && key != "length"){
                 this.theQuestions.push(new QuestionTextResponse(
                     questionsTextResponse[key].question,
                     questionsTextResponse[key].correctResponse,

@@ -1,26 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+/**
+ * Digital Cipher Activity - Entrypoint to the activity app
+ * @version 12.19.22
+ * @author MrH-rezroll
+ */
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import { Routes, Route} from "react-router-dom";
+import React from "react";
+import LayoutView from "./view/LayoutView";
+import AppLandingView from "./view/AppLandingView";
+import Team from "./model/team";
+import PlayControl from "./control/PlayControl";
+
+export interface Props {
+  team1: Team;
+  team2: Team;
 }
 
-export default App;
+export default function App ({team1, team2}:Props){
+  
+    return (
+      <div id="AppWrapper">
+        <h1>Capture the Flag</h1>
+        <Routes>
+          <Route path="/" element={<LayoutView />}>
+            <Route index element={<AppLandingView />}/>
+            <Route path="play" element={<PlayControl team1={team1} team2={team2} />}/>
+            <Route path="*" element={<AppLandingView />} />
+          </Route>
+        </Routes>
+      </div>
+    );
+}

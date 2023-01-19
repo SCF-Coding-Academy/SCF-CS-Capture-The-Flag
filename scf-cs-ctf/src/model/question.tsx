@@ -4,17 +4,25 @@
  * @author MrH-rezroll
  */
 
+import React from "react";
+
 export default abstract class Question{
     public theQuestion:string;
     public timeLimit:number;
     public pointsScored:number;
     public responseGiven:string;
+    public correctResponse:string;
+    public supportImage:string;
+    public answers: Array<string>;
 
-    constructor(question:string, timeLimit: number){
+    constructor(question:string, timeLimit: number, answers: Array<string> = new Array<string>, supportImage:string = "", correctResponse:string = ""){
         this.theQuestion = question;
         this.timeLimit = timeLimit;
         this.pointsScored = 0;
         this.responseGiven = "";
+        this.answers = answers;
+        this.correctResponse = correctResponse;
+        this.supportImage = supportImage;
     }
 
     protected setPointsScored(pointsScored:number):void {

@@ -10,10 +10,10 @@ export default class QuestionTextResponse extends Question{
 
     private isCaseSensitive: boolean;
     private pointValue: number;
-    private correctResponse: string;
+    public correctResponse: string;
 
     constructor(question: string, correctResponse: string, timeLimit: number = 30, pointValue: number = 2, isCaseSensitive: boolean = true){
-        super(question, timeLimit);
+        super(question, timeLimit, new Array<string>, "", correctResponse);
         this.pointValue = pointValue;
         this.correctResponse = correctResponse;
         this.isCaseSensitive = isCaseSensitive;
