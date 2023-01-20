@@ -13,6 +13,7 @@ let cipherPreviewInput = document.getElementById('EncodeDisplayPreview') as HTML
 let cipherText = document.getElementById('CipherText') as HTMLInputElement | null;
 
 export interface State{
+    team1Name:string,
     team1Question:string,
     team1Answers:Array<string>,
     team1ImgUrl:string,
@@ -20,6 +21,7 @@ export interface State{
     team1Finish:boolean,
     team1TotalPossible:number,
     team1TotalScore:number,
+    team2Name:string,
     team2Question:string,
     team2Answers:Array<string>,
     team2ImgUrl:string,
@@ -38,6 +40,7 @@ export default class PlayControl extends React.Component<Props>{
 
 
         this.state = {
+            team1Name: this.props.team1.name,
             team1Question: this.props.team1.questions.theQuestions[this.props.team1.currentQuestionIndex].theQuestion,
             team1Answers: this.props.team1.questions.theQuestions[this.props.team1.currentQuestionIndex].answers,
             team1ImgUrl: this.props.team1.questions.theQuestions[this.props.team1.currentQuestionIndex].supportImage,
@@ -45,6 +48,7 @@ export default class PlayControl extends React.Component<Props>{
             team1Finish: false,
             team1TotalPossible: 0,
             team1TotalScore: 0,
+            team2Name: this.props.team2.name,
             team2Question: this.props.team2.questions.theQuestions[this.props.team2.currentQuestionIndex].theQuestion,
             team2Answers: this.props.team2.questions.theQuestions[this.props.team2.currentQuestionIndex].answers,
             team2ImgUrl: this.props.team2.questions.theQuestions[this.props.team2.currentQuestionIndex].supportImage,
@@ -64,6 +68,7 @@ export default class PlayControl extends React.Component<Props>{
         this.props.team1.resetTeam();
         this.props.team2.resetTeam();
         this.state = {
+            team1Name: this.props.team1.name,
             team1Question: this.props.team1.questions.theQuestions[this.props.team1.currentQuestionIndex].theQuestion,
             team1Answers: this.props.team1.questions.theQuestions[this.props.team1.currentQuestionIndex].answers,
             team1ImgUrl: this.props.team1.questions.theQuestions[this.props.team1.currentQuestionIndex].supportImage,
@@ -71,6 +76,7 @@ export default class PlayControl extends React.Component<Props>{
             team1Finish: false,
             team1TotalPossible: 0,
             team1TotalScore: 0,
+            team2Name: this.props.team2.name,
             team2Question: this.props.team2.questions.theQuestions[this.props.team2.currentQuestionIndex].theQuestion,
             team2Answers: this.props.team2.questions.theQuestions[this.props.team2.currentQuestionIndex].answers,
             team2ImgUrl: this.props.team2.questions.theQuestions[this.props.team2.currentQuestionIndex].supportImage,

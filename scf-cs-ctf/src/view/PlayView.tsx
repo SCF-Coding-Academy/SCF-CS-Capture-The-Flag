@@ -14,7 +14,7 @@ export default function (props:Props, playControl:PlayControl, state:State) {
   return (
       <div id="PlayView">
         <div id="TeamAView">
-            <h2>{props.team1.name}</h2>
+            <h2>{state.team1Name}</h2>
             <div className="question-box">
                 {!state.team1Finish && 
                 <>
@@ -57,7 +57,7 @@ export default function (props:Props, playControl:PlayControl, state:State) {
             </div>
         </div>
         <div id="TeamBView">
-            <h2>{props.team2.name}</h2>
+            <h2>{state.team2Name}</h2>
             <div className="question-box">
                 {!state.team2Finish && 
                 <>

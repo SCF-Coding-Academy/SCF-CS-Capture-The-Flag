@@ -10,6 +10,7 @@ import LayoutView from "./view/LayoutView";
 import AppLandingView from "./view/AppLandingView";
 import Team from "./model/team";
 import PlayControl from "./control/PlayControl";
+import AppLandingControl from "./control/AppLandingControl";
 
 export interface Props {
   team1: Team;
@@ -23,9 +24,9 @@ export default function App ({team1, team2}:Props){
         <h1>Capture the Flag</h1>
         <Routes>
           <Route path="/" element={<LayoutView />}>
-            <Route index element={<AppLandingView />}/>
+            <Route index element={<AppLandingControl team1={team1} team2={team2}/>}/>
             <Route path="play" element={<PlayControl team1={team1} team2={team2} />}/>
-            <Route path="*" element={<AppLandingView />} />
+            <Route path="*" element={<AppLandingControl team1={team1} team2={team2}/>}/>
           </Route>
         </Routes>
       </div>
