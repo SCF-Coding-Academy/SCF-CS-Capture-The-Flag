@@ -17,5 +17,11 @@ export default class Team{
         this.name = name;
         this.questions = new Questions();
         this.currentQuestionIndex = 0;
+        this.resetTeam = this.resetTeam.bind(this);
+    }
+
+    public resetTeam():void{
+        this.questions = new Questions();
+        this.currentQuestionIndex = 0;
     }
 }

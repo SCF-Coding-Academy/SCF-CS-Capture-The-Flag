@@ -1,8 +1,10 @@
 [
     {
         "question":"What is 2 + 2?",
-        "answer1":"3","answer2":"4",
-        "answer3":"1","answer4":"2",
+        "answer1":"3",
+        "answer2":"4",
+        "answer3":"1",
+        "answer4":"2",
         "points1":0,
         "points2":1,
         "points3":0,
@@ -18,7 +20,7 @@
         "points1":0,
         "points2":0,
         "points3":0,
-        "points4":5,
+        "points4":1,
         "timeLimit":30
     }
 ]

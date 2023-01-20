@@ -10,22 +10,20 @@ export default class QuestionTextResponse extends Question{
 
     private isCaseSensitive: boolean;
     private pointValue: number;
-    public correctResponse: string;
 
     constructor(question: string, correctResponse: string, timeLimit: number = 30, pointValue: number = 2, isCaseSensitive: boolean = true){
         super(question, timeLimit, new Array<string>, "", correctResponse);
         this.pointValue = pointValue;
-        this.correctResponse = correctResponse;
         this.isCaseSensitive = isCaseSensitive;
     }
 
-    public scoreAnswer():void{
+    public scoreAnswer(answer:number = 0):void{
         if(this.isCaseSensitive){
             if(this.responseGiven == this.correctResponse)
                 this.setPointsScored(this.pointValue);
         }
         else{
-            if(this.responseGiven.toLowerCase() == this.responseGiven.toLowerCase())
+            if(this.responseGiven.toLowerCase() == this.correctResponse.toLowerCase())
             this.setPointsScored(this.pointValue);
         }
     }

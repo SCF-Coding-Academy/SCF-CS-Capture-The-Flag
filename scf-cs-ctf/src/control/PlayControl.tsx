@@ -17,10 +17,16 @@ export interface State{
     team1Answers:Array<string>,
     team1ImgUrl:string,
     team1TimeLimit:number,
+    team1Finish:boolean,
+    team1TotalPossible:number,
+    team1TotalScore:number,
     team2Question:string,
     team2Answers:Array<string>,
     team2ImgUrl:string,
-    team2TimeLimit:number
+    team2TimeLimit:number,
+    team2Finish:boolean,
+    team2TotalPossible:number,
+    team2TotalScore:number
 }
 
 export default class PlayControl extends React.Component<Props>{
@@ -36,15 +42,43 @@ export default class PlayControl extends React.Component<Props>{
             team1Answers: this.props.team1.questions.theQuestions[this.props.team1.currentQuestionIndex].answers,
             team1ImgUrl: this.props.team1.questions.theQuestions[this.props.team1.currentQuestionIndex].supportImage,
             team1TimeLimit: this.props.team1.questions.theQuestions[this.props.team1.currentQuestionIndex].timeLimit,
+            team1Finish: false,
+            team1TotalPossible: 0,
+            team1TotalScore: 0,
             team2Question: this.props.team2.questions.theQuestions[this.props.team2.currentQuestionIndex].theQuestion,
             team2Answers: this.props.team2.questions.theQuestions[this.props.team2.currentQuestionIndex].answers,
             team2ImgUrl: this.props.team2.questions.theQuestions[this.props.team2.currentQuestionIndex].supportImage,
             team2TimeLimit: this.props.team2.questions.theQuestions[this.props.team2.currentQuestionIndex].timeLimit,
+            team2Finish: false,
+            team2TotalPossible: 0,
+            team2TotalScore: 0
         };
-
-        cipherPreviewInput = null;
-        cipherText = null; 
+        
         this.answerButtonValue = this.answerButtonValue.bind(this);
+        this.resetGame = this.resetGame.bind(this);
+        this.updateGivenResponseTeam1 = this.updateGivenResponseTeam1.bind(this);
+        this.updateGivenResponseTeam2 = this.updateGivenResponseTeam2.bind(this);
+    }
+
+    public resetGame():void{
+        this.props.team1.resetTeam();
+        this.props.team2.resetTeam();
+        this.state = {
+            team1Question: this.props.team1.questions.theQuestions[this.props.team1.currentQuestionIndex].theQuestion,
+            team1Answers: this.props.team1.questions.theQuestions[this.props.team1.currentQuestionIndex].answers,
+            team1ImgUrl: this.props.team1.questions.theQuestions[this.props.team1.currentQuestionIndex].supportImage,
+            team1TimeLimit: this.props.team1.questions.theQuestions[this.props.team1.currentQuestionIndex].timeLimit,
+            team1Finish: false,
+            team1TotalPossible: 0,
+            team1TotalScore: 0,
+            team2Question: this.props.team2.questions.theQuestions[this.props.team2.currentQuestionIndex].theQuestion,
+            team2Answers: this.props.team2.questions.theQuestions[this.props.team2.currentQuestionIndex].answers,
+            team2ImgUrl: this.props.team2.questions.theQuestions[this.props.team2.currentQuestionIndex].supportImage,
+            team2TimeLimit: this.props.team2.questions.theQuestions[this.props.team2.currentQuestionIndex].timeLimit,
+            team2Finish: false,
+            team2TotalPossible: 0,
+            team2TotalScore: 0
+        };
     }
 
     render(): React.ReactNode {
@@ -56,37 +90,60 @@ export default class PlayControl extends React.Component<Props>{
             event.preventDefault();
         }
         if(teamNumber == 1){
-            if(this.props.team1.currentQuestionIndex < this.props.team1.questions.theQuestions.length - 1){
-                this.props.team1.currentQuestionIndex++;
+            if(this.props.team1.currentQuestionIndex < this.props.team1.questions.theQuestions.length){
                 if(isAnswerText){
-                    //handle text input answer
+                    this.props.team1.questions.theQuestions[this.props.team1.currentQuestionIndex].scoreAnswer();
+                    console.log(this.props.team1.questions.theQuestions[this.props.team1.currentQuestionIndex]);
                 }
                 else{
-                    //handle button input answer
+                    this.props.team1.questions.theQuestions[this.props.team1.currentQuestionIndex].scoreAnswer(answerNumber);
+                }
+                if(this.props.team1.currentQuestionIndex < this.props.team1.questions.theQuestions.length - 1){
+                    this.props.team1.currentQuestionIndex++;
+                    this.setState({
+                        team1Question: this.props.team1.questions.theQuestions[this.props.team1.currentQuestionIndex].theQuestion,
+                        team1Answers: this.props.team1.questions.theQuestions[this.props.team1.currentQuestionIndex].answers,
+                        team1ImgUrl: this.props.team1.questions.theQuestions[this.props.team1.currentQuestionIndex].supportImage,
+                        team1TimeLimit: this.props.team1.questions.theQuestions[this.props.team1.currentQuestionIndex].timeLimit,
+                    });
+                }
+                else if(!this.state.team1Finish) {
+                    this.props.team1.questions.setTotalScoreRecieved();
+                    this.setState({
+                        team1TotalScore: this.props.team1.questions.totalScoreRecieved,
+                        team1TotalScorePossible: this.props.team1.questions.totalScorePossible,
+                        team1Finish: true
+                    });
                 }
             }
         }
         else if(teamNumber == 2){
-            if(this.props.team2.currentQuestionIndex < this.props.team2.questions.theQuestions.length - 1){
-                this.props.team2.currentQuestionIndex++;
+            if(this.props.team2.currentQuestionIndex < this.props.team2.questions.theQuestions.length){
                 if(isAnswerText){
-                    //handle text input answer
+                    this.props.team2.questions.theQuestions[this.props.team2.currentQuestionIndex].scoreAnswer();
                 }
                 else{
-                    //handle button input answer
+                    this.props.team2.questions.theQuestions[this.props.team2.currentQuestionIndex].scoreAnswer(answerNumber);
+                }
+                if(this.props.team2.currentQuestionIndex < this.props.team2.questions.theQuestions.length - 1){
+                    this.props.team2.currentQuestionIndex++;
+                    this.setState({
+                        team2Question: this.props.team2.questions.theQuestions[this.props.team2.currentQuestionIndex].theQuestion,
+                        team2Answers: this.props.team2.questions.theQuestions[this.props.team2.currentQuestionIndex].answers,
+                        team2ImgUrl: this.props.team2.questions.theQuestions[this.props.team2.currentQuestionIndex].supportImage,
+                        team2TimeLimit: this.props.team2.questions.theQuestions[this.props.team2.currentQuestionIndex].timeLimit,
+                    });
+                }
+                else if (!this.state.team2Finish){
+                    this.props.team2.questions.setTotalScoreRecieved();
+                    this.setState({
+                        team2TotalScore: this.props.team2.questions.totalScoreRecieved,
+                        team2TotalScorePossible: this.props.team2.questions.totalScorePossible,
+                        team2Finish: true
+                    });
                 }
             }
         }
-        this.setState({
-            team1Question: this.props.team1.questions.theQuestions[this.props.team1.currentQuestionIndex].theQuestion,
-            team1Answers: this.props.team1.questions.theQuestions[this.props.team1.currentQuestionIndex].answers,
-            team1ImgUrl: this.props.team1.questions.theQuestions[this.props.team1.currentQuestionIndex].supportImage,
-            team1TimeLimit: this.props.team1.questions.theQuestions[this.props.team1.currentQuestionIndex].timeLimit,
-            team2Question: this.props.team2.questions.theQuestions[this.props.team2.currentQuestionIndex].theQuestion,
-            team2Answers: this.props.team2.questions.theQuestions[this.props.team2.currentQuestionIndex].answers,
-            team2ImgUrl: this.props.team2.questions.theQuestions[this.props.team2.currentQuestionIndex].supportImage,
-            team2TimeLimit: this.props.team2.questions.theQuestions[this.props.team2.currentQuestionIndex].timeLimit,
-        });
     }
 
     componentDidMount(){
@@ -95,36 +152,48 @@ export default class PlayControl extends React.Component<Props>{
     }
 
     private team1TimerCountDown(props:Props, state:State){
-        if(this.props.team1.currentQuestionIndex < this.props.team1.questions.theQuestions.length && this.props.team1.questions.theQuestions[this.props.team1.currentQuestionIndex].timeLimit > 0.5){
-            this.props.team1.questions.theQuestions[this.props.team1.currentQuestionIndex].timeLimit -= 0.5;
-            this.setState({
-                team1TimeLimit: this.props.team1.questions.theQuestions[this.props.team1.currentQuestionIndex].timeLimit
-            });
-        }
-        else if(this.props.team1.currentQuestionIndex < this.props.team1.questions.theQuestions.length && this.props.team1.questions.theQuestions[this.props.team1.currentQuestionIndex].timeLimit <= 0.5){
-            if(this.props.team1.questions.theQuestions[this.props.team1.currentQuestionIndex].answers.length > 0){
-                this.answerButtonValue(undefined, 10, 1);
+        if(!this.state.team1Finish){
+            if(this.props.team1.currentQuestionIndex < this.props.team1.questions.theQuestions.length && this.props.team1.questions.theQuestions[this.props.team1.currentQuestionIndex].timeLimit > 0.5){
+                this.props.team1.questions.theQuestions[this.props.team1.currentQuestionIndex].timeLimit -= 0.5;
+                this.setState({
+                    team1TimeLimit: this.props.team1.questions.theQuestions[this.props.team1.currentQuestionIndex].timeLimit
+                });
             }
-            else{
-                this.answerButtonValue(undefined, 10, 1, true);
+            else if(this.props.team1.currentQuestionIndex < this.props.team1.questions.theQuestions.length && this.props.team1.questions.theQuestions[this.props.team1.currentQuestionIndex].timeLimit <= 0.5){
+                if(this.props.team1.questions.theQuestions[this.props.team1.currentQuestionIndex].answers.length > 0){
+                    this.answerButtonValue(undefined, 10, 1);
+                }
+                else{
+                    this.answerButtonValue(undefined, 10, 1, true);
+                }
             }
         }
     }
 
     private team2TimerCountDown(props:Props, state:State){
-        if(this.props.team2.currentQuestionIndex < this.props.team2.questions.theQuestions.length && this.props.team2.questions.theQuestions[this.props.team2.currentQuestionIndex].timeLimit > 0.5){
-            this.props.team2.questions.theQuestions[this.props.team2.currentQuestionIndex].timeLimit -= 0.5;
-            this.setState({
-                team2TimeLimit: this.props.team2.questions.theQuestions[this.props.team2.currentQuestionIndex].timeLimit
-            });
-        }
-        else if(this.props.team2.currentQuestionIndex < this.props.team2.questions.theQuestions.length && this.props.team2.questions.theQuestions[this.props.team2.currentQuestionIndex].timeLimit <= 0.5){
-            if(this.props.team2.questions.theQuestions[this.props.team2.currentQuestionIndex].answers.length > 0){
-                this.answerButtonValue(undefined, 10, 2);
+        if(!this.state.team2Finish){
+            if(this.props.team2.currentQuestionIndex < this.props.team2.questions.theQuestions.length && this.props.team2.questions.theQuestions[this.props.team2.currentQuestionIndex].timeLimit > 0.5){
+                this.props.team2.questions.theQuestions[this.props.team2.currentQuestionIndex].timeLimit -= 0.5;
+                this.setState({
+                    team2TimeLimit: this.props.team2.questions.theQuestions[this.props.team2.currentQuestionIndex].timeLimit
+                });
             }
-            else{
-                this.answerButtonValue(undefined, 10, 2, true);
+            else if(this.props.team2.currentQuestionIndex < this.props.team2.questions.theQuestions.length && this.props.team2.questions.theQuestions[this.props.team2.currentQuestionIndex].timeLimit <= 0.5){
+                if(this.props.team2.questions.theQuestions[this.props.team2.currentQuestionIndex].answers.length > 0){
+                    this.answerButtonValue(undefined, 10, 2);
+                }
+                else{
+                    this.answerButtonValue(undefined, 10, 2, true);
+                }
             }
         }
+    }
+    
+    public updateGivenResponseTeam1(event: { target: {name: any, value: any; }; }) {
+        this.props.team1.questions.theQuestions[this.props.team1.currentQuestionIndex].responseGiven = event.target.value;
+    }
+    
+    public updateGivenResponseTeam2(event: { target: {name: any, value: any; }; }) {
+        this.props.team2.questions.theQuestions[this.props.team2.currentQuestionIndex].responseGiven = event.target.value;
     }
 }
