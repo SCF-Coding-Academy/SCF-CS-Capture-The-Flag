@@ -21,7 +21,6 @@ export default function App ({team1, team2}:Props){
   
     return (
       <div id="AppWrapper">
-        <h1>Capture the Flag</h1>
         <Routes>
           <Route path="/" element={<LayoutView />}>
             <Route index element={<AppLandingControl team1={team1} team2={team2}/>}/>

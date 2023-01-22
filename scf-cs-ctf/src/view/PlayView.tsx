@@ -12,6 +12,7 @@ import PlayControl, { State } from "../control/PlayControl";
 export default function (props:Props, playControl:PlayControl, state:State) {
 
   return (
+    <div>
       <div id="PlayView">
         <div id="TeamAView">
             <h2>{state.team1Name}</h2>
@@ -99,6 +100,7 @@ export default function (props:Props, playControl:PlayControl, state:State) {
             }
             </div>
         </div>
+      </div>
         {state.team1Finish && state.team2Finish &&
             <>
             <div id="FinishPanel">
@@ -107,6 +109,6 @@ export default function (props:Props, playControl:PlayControl, state:State) {
             </div>
             </>
         }
-      </div>
+    </div>
     );
 }
