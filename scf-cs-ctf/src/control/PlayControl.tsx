@@ -34,6 +34,8 @@ export interface State{
 export default class PlayControl extends React.Component<Props>{
 
     state:State;
+    team1CounterIntervalID: any = 0;
+    team2CounterIntervalID: any = 0;
 
     constructor(props:Props){
         super(props);
@@ -91,19 +93,25 @@ export default class PlayControl extends React.Component<Props>{
         return PlayView(this.props, this, this.state);
     }
 
-    answerButtonValue(event: any, answerNumber:number, teamNumber:number, isAnswerText:boolean = false) {
+    answerButtonValue(event: any, answerNumber:number, teamNumber:number, isAnswerText:boolean = false, isTimeoutAnswer:boolean = false) {
         if(event != undefined){
             event.preventDefault();
         }
         if(teamNumber == 1){
             if(this.props.team1.currentQuestionIndex < this.props.team1.questions.theQuestions.length){
-                if(isAnswerText){
-                    this.props.team1.questions.theQuestions[this.props.team1.currentQuestionIndex].scoreAnswer();
-                    console.log(this.props.team1.questions.theQuestions[this.props.team1.currentQuestionIndex]);
+                if(!isTimeoutAnswer){
+                    if(isAnswerText){
+                        this.props.team1.questions.theQuestions[this.props.team1.currentQuestionIndex].scoreAnswer();
+                        console.log(this.props.team1.questions.theQuestions[this.props.team1.currentQuestionIndex]);
+                    }
+                    else{
+                        this.props.team1.questions.theQuestions[this.props.team1.currentQuestionIndex].scoreAnswer(answerNumber);
+                    }
                 }
-                else{
-                    this.props.team1.questions.theQuestions[this.props.team1.currentQuestionIndex].scoreAnswer(answerNumber);
+                else {
+                    this.props.team1.questions.theQuestions[this.props.team1.currentQuestionIndex].pointsScored = 0;
                 }
+
                 if(this.props.team1.currentQuestionIndex < this.props.team1.questions.theQuestions.length - 1){
                     this.props.team1.currentQuestionIndex++;
                     this.setState({
@@ -125,12 +133,18 @@ export default class PlayControl extends React.Component<Props>{
         }
         else if(teamNumber == 2){
             if(this.props.team2.currentQuestionIndex < this.props.team2.questions.theQuestions.length){
-                if(isAnswerText){
-                    this.props.team2.questions.theQuestions[this.props.team2.currentQuestionIndex].scoreAnswer();
+                if(!isTimeoutAnswer){
+                    if(isAnswerText){
+                        this.props.team2.questions.theQuestions[this.props.team2.currentQuestionIndex].scoreAnswer();
+                    }
+                    else{
+                        this.props.team2.questions.theQuestions[this.props.team2.currentQuestionIndex].scoreAnswer(answerNumber);
+                    }
                 }
-                else{
-                    this.props.team2.questions.theQuestions[this.props.team2.currentQuestionIndex].scoreAnswer(answerNumber);
+                else {
+                    this.props.team2.questions.theQuestions[this.props.team2.currentQuestionIndex].pointsScored = 0;
                 }
+
                 if(this.props.team2.currentQuestionIndex < this.props.team2.questions.theQuestions.length - 1){
                     this.props.team2.currentQuestionIndex++;
                     this.setState({
@@ -153,24 +167,29 @@ export default class PlayControl extends React.Component<Props>{
     }
 
     componentDidMount(){
-        setInterval(() => {this.team1TimerCountDown(this.props, this.state)}, 1000);
-        setInterval(() => {this.team2TimerCountDown(this.props, this.state)}, 1000);
+        this.team1CounterIntervalID = setInterval(():any => {this.team1TimerCountDown(this.props, this.state)}, 1000);
+        this.team2CounterIntervalID = setInterval(():any => {this.team2TimerCountDown(this.props, this.state)}, 1000);
+    }
+    
+    componentWillUnmount() {
+        clearInterval(this.team1CounterIntervalID);
+        clearInterval(this.team2CounterIntervalID);
     }
 
     private team1TimerCountDown(props:Props, state:State){
         if(!this.state.team1Finish){
-            if(this.props.team1.currentQuestionIndex < this.props.team1.questions.theQuestions.length && this.props.team1.questions.theQuestions[this.props.team1.currentQuestionIndex].timeLimit > 0.5){
-                this.props.team1.questions.theQuestions[this.props.team1.currentQuestionIndex].timeLimit -= 0.5;
+            if(this.props.team1.currentQuestionIndex < this.props.team1.questions.theQuestions.length && this.props.team1.questions.theQuestions[this.props.team1.currentQuestionIndex].timeLimit > 0){
+                this.props.team1.questions.theQuestions[this.props.team1.currentQuestionIndex].timeLimit --;
                 this.setState({
                     team1TimeLimit: this.props.team1.questions.theQuestions[this.props.team1.currentQuestionIndex].timeLimit
                 });
             }
-            else if(this.props.team1.currentQuestionIndex < this.props.team1.questions.theQuestions.length && this.props.team1.questions.theQuestions[this.props.team1.currentQuestionIndex].timeLimit <= 0.5){
+            else if(this.props.team1.currentQuestionIndex < this.props.team1.questions.theQuestions.length && this.props.team1.questions.theQuestions[this.props.team1.currentQuestionIndex].timeLimit <= 0){
                 if(this.props.team1.questions.theQuestions[this.props.team1.currentQuestionIndex].answers.length > 0){
-                    this.answerButtonValue(undefined, 10, 1);
+                    this.answerButtonValue(undefined, 10, 1, false, true);
                 }
                 else{
-                    this.answerButtonValue(undefined, 10, 1, true);
+                    this.answerButtonValue(undefined, 10, 1, true, true);
                 }
             }
         }
@@ -178,18 +197,18 @@ export default class PlayControl extends React.Component<Props>{
 
     private team2TimerCountDown(props:Props, state:State){
         if(!this.state.team2Finish){
-            if(this.props.team2.currentQuestionIndex < this.props.team2.questions.theQuestions.length && this.props.team2.questions.theQuestions[this.props.team2.currentQuestionIndex].timeLimit > 0.5){
-                this.props.team2.questions.theQuestions[this.props.team2.currentQuestionIndex].timeLimit -= 0.5;
+            if(this.props.team2.currentQuestionIndex < this.props.team2.questions.theQuestions.length && this.props.team2.questions.theQuestions[this.props.team2.currentQuestionIndex].timeLimit > 0){
+                this.props.team2.questions.theQuestions[this.props.team2.currentQuestionIndex].timeLimit --;
                 this.setState({
                     team2TimeLimit: this.props.team2.questions.theQuestions[this.props.team2.currentQuestionIndex].timeLimit
                 });
             }
-            else if(this.props.team2.currentQuestionIndex < this.props.team2.questions.theQuestions.length && this.props.team2.questions.theQuestions[this.props.team2.currentQuestionIndex].timeLimit <= 0.5){
+            else if(this.props.team2.currentQuestionIndex < this.props.team2.questions.theQuestions.length && this.props.team2.questions.theQuestions[this.props.team2.currentQuestionIndex].timeLimit <= 0){
                 if(this.props.team2.questions.theQuestions[this.props.team2.currentQuestionIndex].answers.length > 0){
-                    this.answerButtonValue(undefined, 10, 2);
+                    this.answerButtonValue(undefined, 10, 2, false, true);
                 }
                 else{
-                    this.answerButtonValue(undefined, 10, 2, true);
+                    this.answerButtonValue(undefined, 10, 2, true, true);
                 }
             }
         }
