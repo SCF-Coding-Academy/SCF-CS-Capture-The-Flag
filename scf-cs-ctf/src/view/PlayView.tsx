@@ -30,7 +30,7 @@ export default function (props:Props, playControl:PlayControl, state:State) {
             <div className="answer-box">
                 {!state.team1Finish && 
                     <>
-                    <span className="timelimit-burn-down-box">{state.team1TimeLimit} sec.</span>
+                    <span className="timelimit-burn-down-box"><span id="Team1InnerTimeBar"><span>{state.team1TimeLimit} sec.</span></span></span>
                     {state.team1Answers.length == 4 && (
                         <>
                         <button onClick={(event) => playControl.answerButtonValue(event, 0, 1)} defaultValue={0}>W: {state.team1Answers[0]}</button>
@@ -73,7 +73,7 @@ export default function (props:Props, playControl:PlayControl, state:State) {
             <div className="answer-box">
                 {!state.team2Finish && 
                 <>
-                <span className="timelimit-burn-down-box">{state.team2TimeLimit} sec.</span>
+                <span className="timelimit-burn-down-box"><span id="Team2InnerTimeBar"><span>{state.team2TimeLimit} sec.</span></span></span>
                 {state.team2Answers.length == 4 && (
                     <>
                     <button onClick={(event) => playControl.answerButtonValue(event, 0, 2)} defaultValue={0}>up: {state.team2Answers[0]}</button>

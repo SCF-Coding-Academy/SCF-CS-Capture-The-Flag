@@ -36,6 +36,8 @@ export default class PlayControl extends React.Component<Props>{
     state:State;
     team1CounterIntervalID: any = 0;
     team2CounterIntervalID: any = 0;
+    team1CounterBar:number = 0;
+    team2CounterBar:number = 0;
 
     constructor(props:Props){
         super(props);
@@ -59,6 +61,8 @@ export default class PlayControl extends React.Component<Props>{
             team2TotalPossible: 0,
             team2TotalScore: 0
         };
+        this.team1CounterBar = this.state.team1TimeLimit;
+        this.team2CounterBar = this.state.team2TimeLimit;
         
         this.answerButtonValue = this.answerButtonValue.bind(this);
         this.resetGame = this.resetGame.bind(this);
@@ -87,6 +91,8 @@ export default class PlayControl extends React.Component<Props>{
             team2TotalPossible: 0,
             team2TotalScore: 0
         };
+        this.team1CounterBar = this.state.team1TimeLimit;
+        this.team2CounterBar = this.state.team2TimeLimit;
     }
 
     render(): React.ReactNode {
@@ -120,6 +126,7 @@ export default class PlayControl extends React.Component<Props>{
                         team1ImgUrl: this.props.team1.questions.theQuestions[this.props.team1.currentQuestionIndex].supportImage,
                         team1TimeLimit: this.props.team1.questions.theQuestions[this.props.team1.currentQuestionIndex].timeLimit,
                     });
+                    this.team1CounterBar = this.props.team1.questions.theQuestions[this.props.team1.currentQuestionIndex].timeLimit;
                 }
                 else if(!this.state.team1Finish) {
                     this.props.team1.questions.setTotalScoreRecieved();
@@ -153,6 +160,7 @@ export default class PlayControl extends React.Component<Props>{
                         team2ImgUrl: this.props.team2.questions.theQuestions[this.props.team2.currentQuestionIndex].supportImage,
                         team2TimeLimit: this.props.team2.questions.theQuestions[this.props.team2.currentQuestionIndex].timeLimit,
                     });
+                    this.team2CounterBar = this.props.team2.questions.theQuestions[this.props.team2.currentQuestionIndex].timeLimit
                 }
                 else if (!this.state.team2Finish){
                     this.props.team2.questions.setTotalScoreRecieved();
@@ -179,6 +187,7 @@ export default class PlayControl extends React.Component<Props>{
     private team1TimerCountDown(props:Props, state:State){
         if(!this.state.team1Finish){
             if(this.props.team1.currentQuestionIndex < this.props.team1.questions.theQuestions.length && this.props.team1.questions.theQuestions[this.props.team1.currentQuestionIndex].timeLimit > 0){
+                this.updateProgressBar(1, this.state.team1TimeLimit);
                 this.props.team1.questions.theQuestions[this.props.team1.currentQuestionIndex].timeLimit --;
                 this.setState({
                     team1TimeLimit: this.props.team1.questions.theQuestions[this.props.team1.currentQuestionIndex].timeLimit
@@ -198,6 +207,8 @@ export default class PlayControl extends React.Component<Props>{
     private team2TimerCountDown(props:Props, state:State){
         if(!this.state.team2Finish){
             if(this.props.team2.currentQuestionIndex < this.props.team2.questions.theQuestions.length && this.props.team2.questions.theQuestions[this.props.team2.currentQuestionIndex].timeLimit > 0){
+                
+                this.updateProgressBar(2, this.state.team2TimeLimit);
                 this.props.team2.questions.theQuestions[this.props.team2.currentQuestionIndex].timeLimit --;
                 this.setState({
                     team2TimeLimit: this.props.team2.questions.theQuestions[this.props.team2.currentQuestionIndex].timeLimit
@@ -211,6 +222,19 @@ export default class PlayControl extends React.Component<Props>{
                     this.answerButtonValue(undefined, 10, 2, true, true);
                 }
             }
+        }
+    }
+
+    private updateProgressBar(teamNumber:number, currentTeamTime:number):void{
+        let elem:HTMLElement = document.getElementById("Team1InnerTimeBar") as HTMLElement;
+        let width = (100 / this.team1CounterBar) * currentTeamTime;
+        if(teamNumber == 2){
+            elem = document.getElementById("Team2InnerTimeBar") as HTMLElement;
+            width = (100 / this.team2CounterBar) * currentTeamTime;
+        }
+        
+        if(elem != undefined){
+            elem.style.width = width + "%";
         }
     }
     
