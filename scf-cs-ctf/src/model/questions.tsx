@@ -37,7 +37,8 @@ export default class Questions{
                     parseInt(questionsButtonResponse[key].points2),
                     parseInt(questionsButtonResponse[key].points3),
                     parseInt(questionsButtonResponse[key].points4),
-                    parseInt(questionsButtonResponse[key].timeLimit)
+                    parseInt(questionsButtonResponse[key].timeLimit),
+                    questionsButtonResponse[key].supportImage
                 ));
                 this.totalScorePossible += Math.max(parseInt(questionsButtonResponse[key].points1), parseInt(questionsButtonResponse[key].points2), parseInt(questionsButtonResponse[key].points3), parseInt(questionsButtonResponse[key].points4));
             }
@@ -51,7 +52,8 @@ export default class Questions{
                     questionsTextResponse[key].correctResponse,
                     parseInt(questionsTextResponse[key].timeLimit),
                     parseInt(questionsTextResponse[key].pointValue),
-                    questionsTextResponse[key].isCaseSensitive
+                    questionsTextResponse[key].isCaseSensitive,
+                    questionsTextResponse[key].supportImage
                 ));
                 this.totalScorePossible += parseInt(questionsTextResponse[key].pointValue);
             }

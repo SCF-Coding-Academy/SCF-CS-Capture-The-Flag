@@ -126,3 +126,10 @@ label{
   position:absolute;
   background-color: transparent;
 }
+
+.answer-box img{
+  display: block;
+  width: 99%;
+  border: 2px solid #3f3f3f;
+  margin: 10px 0;
+}

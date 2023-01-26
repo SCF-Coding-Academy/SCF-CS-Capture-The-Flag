@@ -9,13 +9,13 @@ import Question from "./question";
 export default class QuestionButtonResponse extends Question{
     public points: Array<number>;
 
-    constructor(question:string, answer1:string, answer2:string, answer3:string, answer4:string, points1:number, points2:number, points3:number, points4:number, timeLimit: number = 30){
+    constructor(question:string, answer1:string, answer2:string, answer3:string, answer4:string, points1:number, points2:number, points3:number, points4:number, timeLimit: number = 30, supportImage: string = ""){
         let answers = new Array<string>(4);
         answers[0] = answer1;
         answers[1] = answer2;
         answers[2] = answer3;
         answers[3] = answer4;
-        super(question, timeLimit, answers);
+        super(question, timeLimit, answers, supportImage);
         this.points = new Array<number>(4);
         this.points[0] = points1;
         this.points[1] = points2;

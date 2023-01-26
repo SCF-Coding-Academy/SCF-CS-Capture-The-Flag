@@ -11,8 +11,8 @@ export default class QuestionTextResponse extends Question{
     private isCaseSensitive: boolean;
     private pointValue: number;
 
-    constructor(question: string, correctResponse: string, timeLimit: number = 30, pointValue: number = 2, isCaseSensitive: boolean = true){
-        super(question, timeLimit, new Array<string>, "", correctResponse);
+    constructor(question: string, correctResponse: string, timeLimit: number = 30, pointValue: number = 2, isCaseSensitive: boolean = true, supportImage:string = ""){
+        super(question, timeLimit, new Array<string>, supportImage, correctResponse);
         this.pointValue = pointValue;
         this.isCaseSensitive = isCaseSensitive;
     }

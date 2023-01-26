@@ -16,7 +16,7 @@ export interface State{
     team1Name:string,
     team1Question:string,
     team1Answers:Array<string>,
-    team1ImgUrl:string,
+    team1SupportImage:string,
     team1TimeLimit:number,
     team1Finish:boolean,
     team1TotalPossible:number,
@@ -24,7 +24,7 @@ export interface State{
     team2Name:string,
     team2Question:string,
     team2Answers:Array<string>,
-    team2ImgUrl:string,
+    team2SupportImage:string,
     team2TimeLimit:number,
     team2Finish:boolean,
     team2TotalPossible:number,
@@ -47,7 +47,7 @@ export default class PlayControl extends React.Component<Props>{
             team1Name: this.props.team1.name,
             team1Question: this.props.team1.questions.theQuestions[this.props.team1.currentQuestionIndex].theQuestion,
             team1Answers: this.props.team1.questions.theQuestions[this.props.team1.currentQuestionIndex].answers,
-            team1ImgUrl: this.props.team1.questions.theQuestions[this.props.team1.currentQuestionIndex].supportImage,
+            team1SupportImage: this.props.team1.questions.theQuestions[this.props.team1.currentQuestionIndex].supportImage,
             team1TimeLimit: this.props.team1.questions.theQuestions[this.props.team1.currentQuestionIndex].timeLimit,
             team1Finish: false,
             team1TotalPossible: 0,
@@ -55,7 +55,7 @@ export default class PlayControl extends React.Component<Props>{
             team2Name: this.props.team2.name,
             team2Question: this.props.team2.questions.theQuestions[this.props.team2.currentQuestionIndex].theQuestion,
             team2Answers: this.props.team2.questions.theQuestions[this.props.team2.currentQuestionIndex].answers,
-            team2ImgUrl: this.props.team2.questions.theQuestions[this.props.team2.currentQuestionIndex].supportImage,
+            team2SupportImage: this.props.team2.questions.theQuestions[this.props.team2.currentQuestionIndex].supportImage,
             team2TimeLimit: this.props.team2.questions.theQuestions[this.props.team2.currentQuestionIndex].timeLimit,
             team2Finish: false,
             team2TotalPossible: 0,
@@ -77,7 +77,7 @@ export default class PlayControl extends React.Component<Props>{
             team1Name: this.props.team1.name,
             team1Question: this.props.team1.questions.theQuestions[this.props.team1.currentQuestionIndex].theQuestion,
             team1Answers: this.props.team1.questions.theQuestions[this.props.team1.currentQuestionIndex].answers,
-            team1ImgUrl: this.props.team1.questions.theQuestions[this.props.team1.currentQuestionIndex].supportImage,
+            team1SupportImage: this.props.team1.questions.theQuestions[this.props.team1.currentQuestionIndex].supportImage,
             team1TimeLimit: this.props.team1.questions.theQuestions[this.props.team1.currentQuestionIndex].timeLimit,
             team1Finish: false,
             team1TotalPossible: 0,
@@ -85,7 +85,7 @@ export default class PlayControl extends React.Component<Props>{
             team2Name: this.props.team2.name,
             team2Question: this.props.team2.questions.theQuestions[this.props.team2.currentQuestionIndex].theQuestion,
             team2Answers: this.props.team2.questions.theQuestions[this.props.team2.currentQuestionIndex].answers,
-            team2ImgUrl: this.props.team2.questions.theQuestions[this.props.team2.currentQuestionIndex].supportImage,
+            team2SupportImage: this.props.team2.questions.theQuestions[this.props.team2.currentQuestionIndex].supportImage,
             team2TimeLimit: this.props.team2.questions.theQuestions[this.props.team2.currentQuestionIndex].timeLimit,
             team2Finish: false,
             team2TotalPossible: 0,
@@ -125,6 +125,7 @@ export default class PlayControl extends React.Component<Props>{
                         team1Answers: this.props.team1.questions.theQuestions[this.props.team1.currentQuestionIndex].answers,
                         team1ImgUrl: this.props.team1.questions.theQuestions[this.props.team1.currentQuestionIndex].supportImage,
                         team1TimeLimit: this.props.team1.questions.theQuestions[this.props.team1.currentQuestionIndex].timeLimit,
+                        team1SupportImage: this.props.team1.questions.theQuestions[this.props.team1.currentQuestionIndex].supportImage,
                     });
                     this.team1CounterBar = this.props.team1.questions.theQuestions[this.props.team1.currentQuestionIndex].timeLimit;
                 }
@@ -159,6 +160,7 @@ export default class PlayControl extends React.Component<Props>{
                         team2Answers: this.props.team2.questions.theQuestions[this.props.team2.currentQuestionIndex].answers,
                         team2ImgUrl: this.props.team2.questions.theQuestions[this.props.team2.currentQuestionIndex].supportImage,
                         team2TimeLimit: this.props.team2.questions.theQuestions[this.props.team2.currentQuestionIndex].timeLimit,
+                        team2SupportImage: this.props.team2.questions.theQuestions[this.props.team2.currentQuestionIndex].supportImage,
                     });
                     this.team2CounterBar = this.props.team2.questions.theQuestions[this.props.team2.currentQuestionIndex].timeLimit
                 }

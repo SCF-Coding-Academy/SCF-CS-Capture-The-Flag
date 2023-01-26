@@ -4,6 +4,7 @@
         "correctResponse":"Pass",
         "timeLimit":30,
         "pointValue":2,
-        "isCaseSensitive":false
+        "isCaseSensitive":false,
+        "supportImage":""
     }
 ]

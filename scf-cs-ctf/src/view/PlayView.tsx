@@ -30,6 +30,11 @@ export default function (props:Props, playControl:PlayControl, state:State) {
             <div className="answer-box">
                 {!state.team1Finish && 
                     <>
+                    {state.team1SupportImage != "" &&
+                        <>
+                        <img src={state.team1SupportImage} alt="Support image for current question" />
+                        </>
+                    }
                     <span className="timelimit-burn-down-box"><span id="Team1InnerTimeBar"><span>{state.team1TimeLimit} sec.</span></span></span>
                     {state.team1Answers.length == 4 && (
                         <>
@@ -73,6 +78,11 @@ export default function (props:Props, playControl:PlayControl, state:State) {
             <div className="answer-box">
                 {!state.team2Finish && 
                 <>
+                {state.team2SupportImage != "" &&
+                    <>
+                    <img src={state.team2SupportImage} alt="Support image for current question" />
+                    </>
+                }
                 <span className="timelimit-burn-down-box"><span id="Team2InnerTimeBar"><span>{state.team2TimeLimit} sec.</span></span></span>
                 {state.team2Answers.length == 4 && (
                     <>
