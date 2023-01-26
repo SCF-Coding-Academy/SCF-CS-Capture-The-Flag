@@ -19,7 +19,16 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App team1={new Team("Team A")} team2={new Team("Team B")} />
+      <App team1={new Team("Team A")} team2={new Team("Team B")} keys={{
+        w: false,
+        a: false,
+        s: false,
+        d: false,
+        up: false,
+        down: false,
+        left: false,
+        right: false
+      }} />
     </BrowserRouter>
   </React.StrictMode>
 );

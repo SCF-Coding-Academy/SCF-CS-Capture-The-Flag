@@ -38,6 +38,10 @@ export default class PlayControl extends React.Component<Props>{
     team2CounterIntervalID: any = 0;
     team1CounterBar:number = 0;
     team2CounterBar:number = 0;
+    canCheckForTeam1ButtonAnswer:boolean = true;
+    canCheckForTeam2ButtonAnswer:boolean = true;
+    canCheckForTeam1ButtonAnswerIntervalID: any = 0;
+    canCheckForTeam2ButtonAnswerIntervalID: any = 0;
 
     constructor(props:Props){
         super(props);
@@ -66,6 +70,7 @@ export default class PlayControl extends React.Component<Props>{
         
         this.answerButtonValue = this.answerButtonValue.bind(this);
         this.resetGame = this.resetGame.bind(this);
+        this.checkForTeam1ButtonInput = this.checkForTeam1ButtonInput.bind(this);
         this.updateGivenResponseTeam1 = this.updateGivenResponseTeam1.bind(this);
         this.updateGivenResponseTeam2 = this.updateGivenResponseTeam2.bind(this);
     }
@@ -179,11 +184,67 @@ export default class PlayControl extends React.Component<Props>{
     componentDidMount(){
         this.team1CounterIntervalID = setInterval(():any => {this.team1TimerCountDown(this.props, this.state)}, 1000);
         this.team2CounterIntervalID = setInterval(():any => {this.team2TimerCountDown(this.props, this.state)}, 1000);
+        this.canCheckForTeam1ButtonAnswerIntervalID = setInterval(():any => {this.checkForTeam1ButtonInput(this.props, this.state)}, 50);
+        this.canCheckForTeam2ButtonAnswerIntervalID = setInterval(():any => {this.checkForTeam2ButtonInput(this.props, this.state)}, 50);
     }
     
     componentWillUnmount() {
         clearInterval(this.team1CounterIntervalID);
         clearInterval(this.team2CounterIntervalID);
+        clearInterval(this.canCheckForTeam1ButtonAnswerIntervalID);
+        clearInterval(this.canCheckForTeam2ButtonAnswerIntervalID);
+    }
+
+    private checkForTeam1ButtonInput(props:Props, state:State):void{
+        if(this.canCheckForTeam1ButtonAnswer){
+            if(this.props.team1.questions.theQuestions[this.props.team1.currentQuestionIndex].answers.length > 0){
+                if(this.props.keys.w){
+                    this.answerButtonValue(undefined, 0, 1);
+                    this.canCheckForTeam1ButtonAnswer = false;
+                }
+                else if(this.props.keys.a){
+                    this.answerButtonValue(undefined, 1, 1);
+                    this.canCheckForTeam1ButtonAnswer = false;
+                }
+                else if(this.props.keys.s){
+                    this.answerButtonValue(undefined, 2, 1);
+                    this.canCheckForTeam1ButtonAnswer = false;
+                }
+                else if(this.props.keys.d){
+                    this.answerButtonValue(undefined, 3, 1);
+                    this.canCheckForTeam1ButtonAnswer = false;
+                }
+            }
+        }
+        else if (!this.props.keys.w && !this.props.keys.a && !this.props.keys.s && !this.props.keys.d){
+            this.canCheckForTeam1ButtonAnswer = true;
+        }
+    }
+
+    private checkForTeam2ButtonInput(props:Props, state:State):void{
+        if(this.canCheckForTeam2ButtonAnswer){
+            if(this.props.team2.questions.theQuestions[this.props.team2.currentQuestionIndex].answers.length > 0){
+                if(this.props.keys.up){
+                    this.answerButtonValue(undefined, 0, 2);
+                    this.canCheckForTeam2ButtonAnswer = false;
+                }
+                else if(this.props.keys.left){
+                    this.answerButtonValue(undefined, 1, 2);
+                    this.canCheckForTeam2ButtonAnswer = false;
+                }
+                else if(this.props.keys.down){
+                    this.answerButtonValue(undefined, 2, 2);
+                    this.canCheckForTeam2ButtonAnswer = false;
+                }
+                else if(this.props.keys.right){
+                    this.answerButtonValue(undefined, 3, 2);
+                    this.canCheckForTeam2ButtonAnswer = false;
+                }
+            }
+        }
+        else if (!this.props.keys.up && !this.props.keys.left && !this.props.keys.down && !this.props.keys.right){
+            this.canCheckForTeam2ButtonAnswer = true;
+        }
     }
 
     private team1TimerCountDown(props:Props, state:State){

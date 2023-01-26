@@ -10,7 +10,6 @@ import { Props } from "../App";
 import PlayControl, { State } from "../control/PlayControl";
 
 export default function (props:Props, playControl:PlayControl, state:State) {
-
   return (
     <div>
       <div id="PlayView">
