@@ -37,10 +37,10 @@ export default function (props:Props, playControl:PlayControl, state:State) {
                     <span className="timelimit-burn-down-box"><span id="Team1InnerTimeBar"><span>{state.team1TimeLimit} sec.</span></span></span>
                     {state.team1Answers.length == 4 && (
                         <>
-                        <button onClick={(event) => playControl.answerButtonValue(event, 0, 1)} defaultValue={0}>W: {state.team1Answers[0]}</button>
-                        <button onClick={(event) => playControl.answerButtonValue(event, 1, 1)} defaultValue={1}>A: {state.team1Answers[1]}</button>
-                        <button onClick={(event) => playControl.answerButtonValue(event, 2, 1)} defaultValue={2}>S: {state.team1Answers[2]}</button>
-                        <button onClick={(event) => playControl.answerButtonValue(event, 3, 1)} defaultValue={3}>D: {state.team1Answers[3]}</button>
+                        <button onClick={(event) => playControl.answerButtonValue(event, 0, 1)} defaultValue={0}>{state.team1Answers[0]}</button>
+                        <button onClick={(event) => playControl.answerButtonValue(event, 1, 1)} defaultValue={1}>{state.team1Answers[1]}</button>
+                        <button onClick={(event) => playControl.answerButtonValue(event, 2, 1)} defaultValue={2}>{state.team1Answers[2]}</button>
+                        <button onClick={(event) => playControl.answerButtonValue(event, 3, 1)} defaultValue={3}>{state.team1Answers[3]}</button>
                         </>
                     )}
                     {state.team1Answers.length < 4 && (
@@ -85,10 +85,10 @@ export default function (props:Props, playControl:PlayControl, state:State) {
                 <span className="timelimit-burn-down-box"><span id="Team2InnerTimeBar"><span>{state.team2TimeLimit} sec.</span></span></span>
                 {state.team2Answers.length == 4 && (
                     <>
-                    <button onClick={(event) => playControl.answerButtonValue(event, 0, 2)} defaultValue={0}>up: {state.team2Answers[0]}</button>
-                    <button onClick={(event) => playControl.answerButtonValue(event, 1, 2)} defaultValue={1}>left: {state.team2Answers[1]}</button>
-                    <button onClick={(event) => playControl.answerButtonValue(event, 2, 2)} defaultValue={2}>down: {state.team2Answers[2]}</button>
-                    <button onClick={(event) => playControl.answerButtonValue(event, 3, 2)} defaultValue={3}>right: {state.team2Answers[3]}</button>
+                    <button onClick={(event) => playControl.answerButtonValue(event, 0, 2)} defaultValue={0}>{state.team2Answers[0]}</button>
+                    <button onClick={(event) => playControl.answerButtonValue(event, 1, 2)} defaultValue={1}>{state.team2Answers[1]}</button>
+                    <button onClick={(event) => playControl.answerButtonValue(event, 2, 2)} defaultValue={2}>{state.team2Answers[2]}</button>
+                    <button onClick={(event) => playControl.answerButtonValue(event, 3, 2)} defaultValue={3}>{state.team2Answers[3]}</button>
                     </>
                 )}
                 {state.team2Answers.length < 4 && (

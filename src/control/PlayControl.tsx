@@ -184,15 +184,19 @@ export default class PlayControl extends React.Component<Props>{
     componentDidMount(){
         this.team1CounterIntervalID = setInterval(():any => {this.team1TimerCountDown(this.props, this.state)}, 1000);
         this.team2CounterIntervalID = setInterval(():any => {this.team2TimerCountDown(this.props, this.state)}, 1000);
+        /* allows button presses for input, not currently used
         this.canCheckForTeam1ButtonAnswerIntervalID = setInterval(():any => {this.checkForTeam1ButtonInput(this.props, this.state)}, 50);
         this.canCheckForTeam2ButtonAnswerIntervalID = setInterval(():any => {this.checkForTeam2ButtonInput(this.props, this.state)}, 50);
+        */
     }
     
     componentWillUnmount() {
         clearInterval(this.team1CounterIntervalID);
         clearInterval(this.team2CounterIntervalID);
+        /* allows button presses for input, not currently used
         clearInterval(this.canCheckForTeam1ButtonAnswerIntervalID);
         clearInterval(this.canCheckForTeam2ButtonAnswerIntervalID);
+        */
     }
 
     private checkForTeam1ButtonInput(props:Props, state:State):void{
