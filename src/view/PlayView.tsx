@@ -62,7 +62,7 @@ export default function (props:Props, playControl:PlayControl, state:State) {
                             <h4>Question Scores</h4>
                             <ul>
                             {props.team1.questions.theQuestions.map((theQuestion, index) => (
-                                <li>Question Number {index + 1}, Score: {theQuestion.pointsScored}</li>
+                                <li key={index}>Question Number {index + 1}, Score: {theQuestion.pointsScored}</li>
                             ))}
                             </ul>
                         </div>
@@ -118,7 +118,7 @@ export default function (props:Props, playControl:PlayControl, state:State) {
                             <h4>Question Scores</h4>
                             <ul>
                             {props.team2.questions.theQuestions.map((theQuestion, index) => (
-                                <li>Question Number {index + 1}, Score: {theQuestion.pointsScored}</li>
+                                <li key={index}>Question Number {index + 1}, Score: {theQuestion.pointsScored}</li>
                             ))}
                             </ul>
                         </div>
