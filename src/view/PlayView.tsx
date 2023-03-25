@@ -8,6 +8,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Props } from "../App";
 import PlayControl, { State } from "../control/PlayControl";
+import Question from "../model/question";
 
 export default function (props:Props, playControl:PlayControl, state:State) {
   return (
@@ -56,7 +57,15 @@ export default function (props:Props, playControl:PlayControl, state:State) {
                 {state.team1Finish &&
                     <>
                         <h4>Results</h4>
-                        <p>Final Score: {state.team1TotalScore} out of {state.team1TotalPossible} </p>
+                        <p>Final Score: {state.team1TotalScore} {state.team2TotalScore < state.team1TotalScore && <span className="winner-badge"></span>}</p>
+                        <div className="results-box">
+                            <h4>Question Scores</h4>
+                            <ul>
+                            {props.team1.questions.theQuestions.map((theQuestion, index) => (
+                                <li>Question Number {index + 1}, Score: {theQuestion.pointsScored}</li>
+                            ))}
+                            </ul>
+                        </div>
                     </>
                 }
             </div>
@@ -104,7 +113,15 @@ export default function (props:Props, playControl:PlayControl, state:State) {
             {state.team2Finish &&
                 <>
                     <h4>Results</h4>
-                    <p>Final Score: {state.team2TotalScore} out of {state.team2TotalPossible} </p>
+                    <p>Final Score: {state.team2TotalScore} {state.team1TotalScore < state.team2TotalScore && <span className="winner-badge"></span>}</p>
+                        <div className="results-box">
+                            <h4>Question Scores</h4>
+                            <ul>
+                            {props.team2.questions.theQuestions.map((theQuestion, index) => (
+                                <li>Question Number {index + 1}, Score: {theQuestion.pointsScored}</li>
+                            ))}
+                            </ul>
+                        </div>
                 </>
             }
             </div>

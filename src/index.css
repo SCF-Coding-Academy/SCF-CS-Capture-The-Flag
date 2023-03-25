@@ -197,6 +197,10 @@ label{
   background-color: transparent;
 }
 
+.answer-box{
+  position:relative;
+}
+
 .answer-box img{
   display: block;
   width: 98%;
@@ -218,6 +222,35 @@ label{
   font-size: 120%;
   margin: 1% 0;
   border-radius: 7px;
+}
+
+.results-box{
+  display: block;
+  width: 98%;
+  border: 2px solid #307126;
+  padding: 2px;
+  background-color: #011423;
+  border-radius: 10px;
+  overflow-y: scroll;
+  height: 178px;
+}
+
+.results-box h4{
+  text-align: center;
+}
+
+.winner-badge{
+  background-image: url('badge-star.gif');
+  background-position: center;
+  background-size: 220%;
+  border: 1px solid #307126;
+  border-radius: 7px;
+  display: block;
+  right: 0px;
+  position: absolute;
+  top: -58px;
+  height: 120px;
+  width: 120px;
 }
 
 @keyframes spin{
