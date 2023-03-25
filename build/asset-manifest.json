@@ -1,15 +1,20 @@
 {
   "files": {
-    "main.css": "/static/css/main.4454129c.css",
-    "main.js": "/static/js/main.fbaa93ba.js",
+    "main.css": "/static/css/main.63dd7434.css",
+    "main.js": "/static/js/main.966d0653.js",
     "static/js/787.71d63073.chunk.js": "/static/js/787.71d63073.chunk.js",
+    "static/media/TechUIOne.jpeg": "/static/media/TechUIOne.21677b825ed96942be6c.jpeg",
+    "static/media/badge-star.gif": "/static/media/badge-star.b89ab76f898b1dd72a15.gif",
+    "static/media/SimpleTechBold02.ttf": "/static/media/SimpleTechBold02.f981da469fb4f12289ce.ttf",
+    "static/media/FutureTech.ttf": "/static/media/FutureTech.52f8abf476043618cef2.ttf",
+    "static/media/auto-techno.ttf": "/static/media/auto-techno.8c9f70e4eaf2cca6207c.ttf",
     "index.html": "/index.html",
-    "main.4454129c.css.map": "/static/css/main.4454129c.css.map",
-    "main.fbaa93ba.js.map": "/static/js/main.fbaa93ba.js.map",
+    "main.63dd7434.css.map": "/static/css/main.63dd7434.css.map",
+    "main.966d0653.js.map": "/static/js/main.966d0653.js.map",
     "787.71d63073.chunk.js.map": "/static/js/787.71d63073.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.4454129c.css",
-    "static/js/main.fbaa93ba.js"
+    "static/css/main.63dd7434.css",
+    "static/js/main.966d0653.js"
   ]
 }
