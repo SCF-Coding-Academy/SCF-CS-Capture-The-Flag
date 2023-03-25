@@ -57,7 +57,7 @@ export default function (props:Props, playControl:PlayControl, state:State) {
                 {state.team1Finish &&
                     <>
                         <h4>Results</h4>
-                        <p>Final Score: {state.team1TotalScore} {state.team2TotalScore < state.team1TotalScore && <span className="winner-badge"></span>}</p>
+                        <p>Final Score: {state.team1TotalScore} {state.team2Finish && state.team2TotalScore < state.team1TotalScore && <span className="winner-badge"></span>}</p>
                         <div className="results-box">
                             <h4>Question Scores</h4>
                             <ul>
@@ -113,7 +113,7 @@ export default function (props:Props, playControl:PlayControl, state:State) {
             {state.team2Finish &&
                 <>
                     <h4>Results</h4>
-                    <p>Final Score: {state.team2TotalScore} {state.team1TotalScore < state.team2TotalScore && <span className="winner-badge"></span>}</p>
+                    <p>Final Score: {state.team2TotalScore} {state.team1Finish && state.team1TotalScore < state.team2TotalScore && <span className="winner-badge"></span>}</p>
                         <div className="results-box">
                             <h4>Question Scores</h4>
                             <ul>

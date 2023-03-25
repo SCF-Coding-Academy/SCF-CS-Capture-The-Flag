@@ -113,7 +113,6 @@ export default class PlayControl extends React.Component<Props>{
                 if(!isTimeoutAnswer){
                     if(isAnswerText){
                         this.props.team1.questions.theQuestions[this.props.team1.currentQuestionIndex].scoreAnswer();
-                        console.log(this.props.team1.questions.theQuestions[this.props.team1.currentQuestionIndex]);
                     }
                     else{
                         this.props.team1.questions.theQuestions[this.props.team1.currentQuestionIndex].scoreAnswer(answerNumber);
