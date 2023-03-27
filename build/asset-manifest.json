@@ -1,20 +1,25 @@
 {
   "files": {
-    "main.css": "/static/css/main.63dd7434.css",
-    "main.js": "/static/js/main.966d0653.js",
-    "static/js/787.71d63073.chunk.js": "/static/js/787.71d63073.chunk.js",
-    "static/media/TechUIOne.jpeg": "/static/media/TechUIOne.21677b825ed96942be6c.jpeg",
-    "static/media/badge-star.gif": "/static/media/badge-star.b89ab76f898b1dd72a15.gif",
-    "static/media/SimpleTechBold02.ttf": "/static/media/SimpleTechBold02.f981da469fb4f12289ce.ttf",
-    "static/media/FutureTech.ttf": "/static/media/FutureTech.52f8abf476043618cef2.ttf",
-    "static/media/auto-techno.ttf": "/static/media/auto-techno.8c9f70e4eaf2cca6207c.ttf",
-    "index.html": "/index.html",
-    "main.63dd7434.css.map": "/static/css/main.63dd7434.css.map",
-    "main.966d0653.js.map": "/static/js/main.966d0653.js.map",
-    "787.71d63073.chunk.js.map": "/static/js/787.71d63073.chunk.js.map"
+    "main.css": "/SCF-CS-CTF-Activity/static/css/main.9aa22413.css",
+    "main.js": "/SCF-CS-CTF-Activity/static/js/main.d66dfc11.js",
+    "static/js/787.71d63073.chunk.js": "/SCF-CS-CTF-Activity/static/js/787.71d63073.chunk.js",
+    "static/media/TechUIOne.jpeg": "/SCF-CS-CTF-Activity/static/media/TechUIOne.21677b825ed96942be6c.jpeg",
+    "static/media/winSound.wav": "/SCF-CS-CTF-Activity/static/media/winSound.c66c503b59b885ffd33e.wav",
+    "static/media/buttonClickTeam2.wav": "/SCF-CS-CTF-Activity/static/media/buttonClickTeam2.6f525db505c5e0302ef6.wav",
+    "static/media/finishSelect.wav": "/SCF-CS-CTF-Activity/static/media/finishSelect.3fe63efe0abd5a10bf5c.wav",
+    "static/media/menuSelect.wav": "/SCF-CS-CTF-Activity/static/media/menuSelect.1a8c21a83c2bc9ef0367.wav",
+    "static/media/badge-star.gif": "/SCF-CS-CTF-Activity/static/media/badge-star.b89ab76f898b1dd72a15.gif",
+    "static/media/buttonClickTeam1.wav": "/SCF-CS-CTF-Activity/static/media/buttonClickTeam1.aada0387daa18f81f05e.wav",
+    "static/media/SimpleTechBold02.ttf": "/SCF-CS-CTF-Activity/static/media/SimpleTechBold02.f981da469fb4f12289ce.ttf",
+    "static/media/FutureTech.ttf": "/SCF-CS-CTF-Activity/static/media/FutureTech.52f8abf476043618cef2.ttf",
+    "static/media/auto-techno.ttf": "/SCF-CS-CTF-Activity/static/media/auto-techno.8c9f70e4eaf2cca6207c.ttf",
+    "index.html": "/SCF-CS-CTF-Activity/index.html",
+    "main.9aa22413.css.map": "/SCF-CS-CTF-Activity/static/css/main.9aa22413.css.map",
+    "main.d66dfc11.js.map": "/SCF-CS-CTF-Activity/static/js/main.d66dfc11.js.map",
+    "787.71d63073.chunk.js.map": "/SCF-CS-CTF-Activity/static/js/787.71d63073.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.63dd7434.css",
-    "static/js/main.966d0653.js"
+    "static/css/main.9aa22413.css",
+    "static/js/main.d66dfc11.js"
   ]
 }

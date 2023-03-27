@@ -18,11 +18,13 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
   },
   "include": [
     "src",
     "src/view",
-    "src/control"
+    "src/control",
+    "types/*",
+    "assets/*"
   ]
 }

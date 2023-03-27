@@ -7,7 +7,6 @@
 import { Routes, Route} from "react-router-dom";
 import React, { useEffect } from "react";
 import LayoutView from "./view/LayoutView";
-import AppLandingView from "./view/AppLandingView";
 import Team from "./model/team";
 import PlayControl from "./control/PlayControl";
 import AppLandingControl from "./control/AppLandingControl";
@@ -16,9 +15,14 @@ export interface Props {
   team1: Team;
   team2: Team;
   keys: {w:boolean, a:boolean, s:boolean, d:boolean, up:boolean, down:boolean, left:boolean, right:boolean};
+  menuSelectSound: HTMLAudioElement;
+  menuSelectSound2: HTMLAudioElement;
+  menuSelectSound3: HTMLAudioElement;
+  finishClickSound: HTMLAudioElement;
+  winSound: HTMLAudioElement;
 }
 
-export default function App ({team1, team2, keys}:Props){
+export default function App ({team1, team2, keys, menuSelectSound, menuSelectSound2, menuSelectSound3, finishClickSound, winSound}:Props){
       
     useEffect(() => {
       window.addEventListener("keydown", downHandler);
@@ -28,7 +32,7 @@ export default function App ({team1, team2, keys}:Props){
         window.removeEventListener("keydown", downHandler);
         window.addEventListener("keyup", upHandler);
       };
-    }, []);
+    });
 
     function downHandler({ key }:any): void {
         switch(key){
@@ -94,9 +98,9 @@ export default function App ({team1, team2, keys}:Props){
       <div id="AppWrapper">
         <Routes>
           <Route path="/" element={<LayoutView />}>
-            <Route index element={<AppLandingControl team1={team1} team2={team2} keys={keys}/>}/>
-            <Route path="play" element={<PlayControl team1={team1} team2={team2} keys={keys} />}/>
-            <Route path="*" element={<AppLandingControl team1={team1} team2={team2} keys={keys}/>}/>
+            <Route index element={<AppLandingControl team1={team1} team2={team2} keys={keys} menuSelectSound={menuSelectSound} menuSelectSound2={menuSelectSound2} menuSelectSound3={menuSelectSound3} finishClickSound={finishClickSound} winSound={winSound}/>}/>
+            <Route path="play" element={<PlayControl team1={team1} team2={team2} keys={keys} menuSelectSound={menuSelectSound} menuSelectSound2={menuSelectSound2} menuSelectSound3={menuSelectSound3} finishClickSound={finishClickSound} winSound={winSound}/>}/>
+            <Route path="*" element={<AppLandingControl team1={team1} team2={team2} keys={keys} menuSelectSound={menuSelectSound} menuSelectSound2={menuSelectSound2} menuSelectSound3={menuSelectSound3} finishClickSound={finishClickSound} winSound={winSound}/>}/>
           </Route>
         </Routes>
       </div>

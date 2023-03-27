@@ -42,10 +42,21 @@ export default class PlayControl extends React.Component<Props>{
     canCheckForTeam2ButtonAnswer:boolean = true;
     canCheckForTeam1ButtonAnswerIntervalID: any = 0;
     canCheckForTeam2ButtonAnswerIntervalID: any = 0;
+    audio1:HTMLAudioElement;
+    audio2:HTMLAudioElement;
+    audioFinish:HTMLAudioElement;
+    audioWin:HTMLAudioElement;
 
     constructor(props:Props){
         super(props);
-
+        this.audio1 = new Audio(props.menuSelectSound2.src);
+        this.audio1.preload = 'auto';
+        this.audio2 = new Audio(props.menuSelectSound3.src);
+        this.audio2.preload = 'auto';
+        this.audioFinish = new Audio(props.finishClickSound.src);
+        this.audioFinish.preload = 'auto';
+        this.audioWin = new Audio(props.winSound.src);
+        this.audioWin.preload = 'auto';
 
         this.state = {
             team1Name: this.props.team1.name,
@@ -98,6 +109,7 @@ export default class PlayControl extends React.Component<Props>{
         };
         this.team1CounterBar = this.state.team1TimeLimit;
         this.team2CounterBar = this.state.team2TimeLimit;
+        this.playFinishClick();
     }
 
     render(): React.ReactNode {
@@ -109,6 +121,7 @@ export default class PlayControl extends React.Component<Props>{
             event.preventDefault();
         }
         if(teamNumber == 1){
+            this.playAudio1();
             if(this.props.team1.currentQuestionIndex < this.props.team1.questions.theQuestions.length){
                 if(!isTimeoutAnswer){
                     if(isAnswerText){
@@ -144,6 +157,7 @@ export default class PlayControl extends React.Component<Props>{
             }
         }
         else if(teamNumber == 2){
+            this.playAudio2();
             if(this.props.team2.currentQuestionIndex < this.props.team2.questions.theQuestions.length){
                 if(!isTimeoutAnswer){
                     if(isAnswerText){
@@ -302,6 +316,40 @@ export default class PlayControl extends React.Component<Props>{
         if(elem != undefined){
             elem.style.width = width + "%";
         }
+    }
+
+    private async playAudio1(){
+      this.audio1.pause();
+      this.audio1.volume = 0.5;
+      this.audio1.currentTime = 0;
+      await this.audio1.play();
+    }
+
+    private async playAudio2(){
+        this.audio2.pause();
+        this.audio2.volume = 0.5;
+        this.audio2.currentTime = 0;
+      await this.audio2.play();
+    }
+
+    private async playFinishClick(){
+        this.audioFinish.pause();
+        this.audioFinish.volume = 1;
+        this.audioFinish.currentTime = 0;
+      await this.audioFinish.play();
+    }
+
+    private async playWin():Promise<true>{
+      this.audioWin.pause();
+      this.audioWin.volume = 1;
+      this.audioWin.currentTime = 0;
+      await this.audioWin.play();
+      return true;
+    }
+
+    public doWinSound():boolean{
+        this.playWin();
+        return true;
     }
     
     public updateGivenResponseTeam1(event: { target: {name: any, value: any; }; }) {

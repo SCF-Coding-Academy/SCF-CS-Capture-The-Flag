@@ -9,6 +9,10 @@ import { Link } from "react-router-dom";
 import AppLandingControl from "../control/AppLandingControl";
 
 export default function AppLandingView(props:Props, appLandingControl:AppLandingControl) {
+  let audio = new Audio(props.menuSelectSound.src);
+  const playAudio = () => {
+    audio.play();
+  }
     return (
       <div id="AppLanding">
         <h2>Create Team Names</h2>
@@ -23,7 +27,7 @@ export default function AppLandingView(props:Props, appLandingControl:AppLanding
               <input onChange={appLandingControl.updateTeam2Name} name="team2Name" type="text" defaultValue={"Team B"}></input>
             </div>
           </form>
-          <Link to="play">Play Game!</Link>
+          <Link onClick={playAudio} to="play">Play Game!</Link>
         </div>
       </div>
     );

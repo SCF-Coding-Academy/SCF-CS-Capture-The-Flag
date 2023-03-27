@@ -11,6 +11,8 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import Team from './model/team';
+require('./assets/buttonClickTeam1.wav');
+require('./assets/buttonClickTeam2.wav');
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -28,7 +30,12 @@ root.render(
         down: false,
         left: false,
         right: false
-      }} />
+      }} 
+      menuSelectSound={new Audio(require('./assets/menuSelect.wav'))} 
+      menuSelectSound2={new Audio(require('./assets/buttonClickTeam1.wav'))}
+      menuSelectSound3={new Audio(require('./assets/buttonClickTeam2.wav'))}
+      finishClickSound={new Audio(require('./assets/finishSelect.wav'))}
+      winSound={new Audio(require('./assets/winSound.wav'))}/>
     </BrowserRouter>
   </React.StrictMode>
 );
