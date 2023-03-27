@@ -8,6 +8,7 @@ import React from "react";
 import { Props } from "../App";
 import Team from "../model/team";
 import PlayView from "../view/PlayView";
+import AudioControl from "./AudioControl";
 
 let cipherPreviewInput = document.getElementById('EncodeDisplayPreview') as HTMLInputElement | null;
 let cipherText = document.getElementById('CipherText') as HTMLInputElement | null;
@@ -46,6 +47,7 @@ export default class PlayControl extends React.Component<Props>{
     audio2:HTMLAudioElement;
     audioFinish:HTMLAudioElement;
     audioWin:HTMLAudioElement;
+    audioControl:AudioControl;
 
     constructor(props:Props){
         super(props);
@@ -57,6 +59,7 @@ export default class PlayControl extends React.Component<Props>{
         this.audioFinish.preload = 'auto';
         this.audioWin = new Audio(props.winSound.src);
         this.audioWin.preload = 'auto';
+        this.audioControl = new AudioControl();
 
         this.state = {
             team1Name: this.props.team1.name,
@@ -109,7 +112,7 @@ export default class PlayControl extends React.Component<Props>{
         };
         this.team1CounterBar = this.state.team1TimeLimit;
         this.team2CounterBar = this.state.team2TimeLimit;
-        this.playFinishClick();
+        this.audioControl.playAudioClip(this.audioFinish);
     }
 
     render(): React.ReactNode {
@@ -121,7 +124,7 @@ export default class PlayControl extends React.Component<Props>{
             event.preventDefault();
         }
         if(teamNumber == 1){
-            this.playAudio1();
+            this.audioControl.playAudioClip(this.audio1, 0.5);
             if(this.props.team1.currentQuestionIndex < this.props.team1.questions.theQuestions.length){
                 if(!isTimeoutAnswer){
                     if(isAnswerText){
@@ -157,7 +160,7 @@ export default class PlayControl extends React.Component<Props>{
             }
         }
         else if(teamNumber == 2){
-            this.playAudio2();
+            this.audioControl.playAudioClip(this.audio2, 0.5);
             if(this.props.team2.currentQuestionIndex < this.props.team2.questions.theQuestions.length){
                 if(!isTimeoutAnswer){
                     if(isAnswerText){
@@ -318,37 +321,8 @@ export default class PlayControl extends React.Component<Props>{
         }
     }
 
-    private async playAudio1(){
-      this.audio1.pause();
-      this.audio1.volume = 0.5;
-      this.audio1.currentTime = 0;
-      await this.audio1.play();
-    }
-
-    private async playAudio2(){
-        this.audio2.pause();
-        this.audio2.volume = 0.5;
-        this.audio2.currentTime = 0;
-      await this.audio2.play();
-    }
-
-    private async playFinishClick(){
-        this.audioFinish.pause();
-        this.audioFinish.volume = 1;
-        this.audioFinish.currentTime = 0;
-      await this.audioFinish.play();
-    }
-
-    private async playWin():Promise<true>{
-      this.audioWin.pause();
-      this.audioWin.volume = 1;
-      this.audioWin.currentTime = 0;
-      await this.audioWin.play();
-      return true;
-    }
-
     public doWinSound():boolean{
-        this.playWin();
+        this.audioControl.playAudioClip(this.audioWin);
         return true;
     }
     
