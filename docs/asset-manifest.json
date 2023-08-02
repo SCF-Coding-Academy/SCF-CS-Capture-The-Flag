@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/SCF-CS-Capture-The-Flag/static/css/main.b7a8235f.css",
-    "main.js": "/SCF-CS-Capture-The-Flag/static/js/main.47f36bf9.js",
+    "main.js": "/SCF-CS-Capture-The-Flag/static/js/main.7d6f9be5.js",
     "static/js/787.71d63073.chunk.js": "/SCF-CS-Capture-The-Flag/static/js/787.71d63073.chunk.js",
     "static/media/TechUIOne.jpeg": "/SCF-CS-Capture-The-Flag/static/media/TechUIOne.21677b825ed96942be6c.jpeg",
     "static/media/winSound.wav": "/SCF-CS-Capture-The-Flag/static/media/winSound.c66c503b59b885ffd33e.wav",
@@ -15,11 +15,11 @@
     "static/media/auto-techno.ttf": "/SCF-CS-Capture-The-Flag/static/media/auto-techno.8c9f70e4eaf2cca6207c.ttf",
     "index.html": "/SCF-CS-Capture-The-Flag/index.html",
     "main.b7a8235f.css.map": "/SCF-CS-Capture-The-Flag/static/css/main.b7a8235f.css.map",
-    "main.47f36bf9.js.map": "/SCF-CS-Capture-The-Flag/static/js/main.47f36bf9.js.map",
+    "main.7d6f9be5.js.map": "/SCF-CS-Capture-The-Flag/static/js/main.7d6f9be5.js.map",
     "787.71d63073.chunk.js.map": "/SCF-CS-Capture-The-Flag/static/js/787.71d63073.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.b7a8235f.css",
-    "static/js/main.47f36bf9.js"
+    "static/js/main.7d6f9be5.js"
   ]
 }
