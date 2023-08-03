@@ -11,7 +11,7 @@
         "points4": 0,
         "timeLimit": 30,
         "supportImage": ""
-    }, 
+    },
     {
         "question": "What is 2 + 2?",
         "answer1": "3",
@@ -163,7 +163,7 @@
         "answer4": "Share it with your friends",
         "points1": 0,
         "points2": 0,
-        "points3": 10,       
+        "points3": 10,
         "points4": 0,
         "timeLimit": 30,
         "supportImage": ""
@@ -233,7 +233,7 @@
         "timeLimit": 30,
         "supportImage": ""
     },
- {
+    {
         "question": "What is the result of encrypting the word 'HELLO' using a Caesar cipher with a shift of 3?",
         "answer1": "OLSSV",
         "answer2": "KHOOR",
@@ -324,5 +324,4 @@
         "timeLimit": 30,
         "supportImage": ""
     }
-
 ]
